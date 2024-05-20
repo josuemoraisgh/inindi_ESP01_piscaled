@@ -8,7 +8,7 @@ typedef struct
   TickType_t delay;
 } ledParameter_t;
 
-void toggleLED(void *pinParameter) // Faz a leitura do sinal Analogico
+void toggleLED(void *pinParameter) // Faz a mudança de estado de um led
 {
   const ledParameter_t ledParameter = *(ledParameter_t *)pinParameter;
   for (;;)
@@ -18,13 +18,13 @@ void toggleLED(void *pinParameter) // Faz a leitura do sinal Analogico
   }
 }
 
-void analogReadFunc(void *parameters) // Faz a leitura do sinal Analogico
+void analogReadFunc(void *parameters) // Faz a leitura do sinal Analógico
 {
   double timeStamp = 0;
   for (;;)
   {
     unsigned int amplitude = (unsigned int)(1000.0 * ((float)analogRead(ANALOGPIN)) / 1023.0);
-    timeStamp ++;
+    timeStamp++;
     Serial.print(">onda:");
     Serial.print(timeStamp);
     Serial.print(":");
@@ -40,6 +40,7 @@ void setup()
   pinMode(LEDPIN2, OUTPUT);
   pinMode(ANALOGPIN, INPUT);
   Serial.begin(115200);
+  Serial.println("Starting serial...");  
   ledParameter_t led1 = {LEDPIN1, 500};
   xTaskCreate(
       toggleLED,   // Function name
@@ -67,5 +68,23 @@ void setup()
       NULL            // Task handle
   );
 }
+float i = 0;
 
-void loop() {}
+void loop()
+{
+  i += 0.1;
+
+  // Print log
+  Serial.print("casa");
+  Serial.println(i);
+
+  // Plot a sinus
+  Serial.print(">sin:");
+  Serial.println(sin(i));
+
+  // Plot a cosinus
+  Serial.print(">Sum:");
+  Serial.println(0.8 * sin(i) + 0.2 * cos(i));
+
+  delay(50);
+}
