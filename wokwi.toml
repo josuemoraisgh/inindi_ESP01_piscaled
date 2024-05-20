@@ -2,3 +2,4 @@
 version = 1
 elf = ".pio/build/upesy_wroom/firmware.elf"
 firmware = ".pio/build/upesy_wroom/firmware.bin"
+rfc2217ServerPort = 4000
