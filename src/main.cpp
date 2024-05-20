@@ -10,7 +10,7 @@ typedef struct
 
 void toggleLED(void *pinParameter) // Faz a mudança de estado de um led
 {
-  const ledParameter_t ledParameter = *(ledParameter_t *)pinParameter;
+  const ledParameter_t ledParameter = *(ledParameter_t *) pinParameter;
   for (;;)
   {
     digitalWrite(ledParameter.pin, !digitalRead(ledParameter.pin));
