@@ -1,7 +1,8 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
-#define LEDPIN1 2                   // the number of the LED pin
-#define ANALOGPIN A5 
+#define LEDPIN1 26  
+#define LEDPIN2 27           
+#define ANALOGPIN A7 
 
 #endif
